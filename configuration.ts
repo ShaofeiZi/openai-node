@@ -12,9 +12,19 @@
  * Do not edit the class manually.
  */
 
-
-const packageJson = require("../package.json");
-
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * OpenAI API
+ * 用于从和微调语言模型的API
+ *
+ * OpenAPI文档的版本：1.2.0
+ * 
+ *
+ * 注意：此类是由OpenAPI Generator自动生成的（https://openapi-generator.tech）。
+ * https://openapi-generator.tech
+ * 不要手动编辑类。
+ */
 export interface ConfigurationParameters {
     apiKey?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
     organization?: string;
@@ -28,57 +38,55 @@ export interface ConfigurationParameters {
 
 export class Configuration {
     /**
-     * parameter for apiKey security
-     * @param name security name
+     * apiKey安全性参数
+     * @param name 安全名称
      * @memberof Configuration
      */
     apiKey?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
     /**
-     * OpenAI organization id
+     * OpenAI组织ID
      *
      * @type {string}
      * @memberof Configuration
      */
     organization?: string;
     /**
-     * parameter for basic security
+     * 基本安全参数
      *
      * @type {string}
      * @memberof Configuration
      */
     username?: string;
     /**
-     * parameter for basic security
+     * 基本安全参数
      *
      * @type {string}
      * @memberof Configuration
      */
     password?: string;
     /**
-     * parameter for oauth2 security
-     * @param name security name
-     * @param scopes oauth2 scope
+     * oauth2安全性参数
+     * @param name 安全名称
+     * @param scopes oauth2范围
      * @memberof Configuration
      */
     accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string) | ((name?: string, scopes?: string[]) => Promise<string>);
     /**
-     * override base path
+     * 覆盖基本路径
      *
      * @type {string}
      * @memberof Configuration
      */
     basePath?: string;
     /**
-     * base options for axios calls
+     * 用于axios调用的基本选项
      *
      * @type {any}
      * @memberof Configuration
      */
     baseOptions?: any;
     /**
-     * The FormData constructor that will be used to create multipart form data
-     * requests. You can inject this here so that execution environments that
-     * do not support the FormData class can still run the generated client.
+     * 将用于创建多部分表单数据的FormData构造函数。您可以在此处注入它，以便不支持FormData类的执行环境仍然可以运行生成的客户端。
      *
      * @type {new () => FormData}
      */
@@ -98,7 +106,7 @@ export class Configuration {
             this.baseOptions = {};
         }
         this.baseOptions.headers = {
-            'User-Agent': `OpenAI/NodeJS/${packageJson.version}`,
+            'User-Agent': `OpenAI/NodeJS/3.2.1`,
             'Authorization': `Bearer ${this.apiKey}`,
             ...this.baseOptions.headers,
         }
@@ -111,17 +119,18 @@ export class Configuration {
     }
 
     /**
-     * Check if the given MIME is a JSON MIME.
-     * JSON MIME examples:
+     * 检查给定的MIME是否为JSON MIME。
+     * JSON MIME示例：
      *   application/json
      *   application/json; charset=UTF8
      *   APPLICATION/JSON
      *   application/vnd.company+json
-     * @param mime - MIME (Multipurpose Internet Mail Extensions)
-     * @return True if the given MIME is JSON, false otherwise.
+     * @param mime - MIME（多用途互联网邮件扩展）
+     * @return 如果给定的MIME是JSON，则为True，否则为false。
      */
     public isJsonMime(mime: string): boolean {
         const jsonMime: RegExp = new RegExp('^(application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(;.*)?$', 'i');
         return mime !== null && (jsonMime.test(mime) || mime.toLowerCase() === 'application/json-patch+json');
     }
 }
+
